@@ -1,12 +1,13 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 
 const app = express()
 
 app.use(express.json())
-
 morgan.token('body', function (req:any, res:any) { return JSON.stringify(req.body) })
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
+app.use(cors())
 
 interface IPerson {
     id: number,
